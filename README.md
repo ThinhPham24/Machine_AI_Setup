@@ -5,6 +5,8 @@
 
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
 
+pip install torch==2.7.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+
 echo "=== Step 1: Installing CUDA 12.8 ==="
 wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda-repo-ubuntu2204-12-8-local_12.8.0-1_amd64.deb
 sudo dpkg -i cuda-repo-ubuntu2204-12-8-local_12.8.0-1_amd64.deb
