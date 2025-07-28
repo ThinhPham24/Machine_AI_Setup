@@ -1,6 +1,6 @@
 # Machine_AI_Setup
 
-## 1.
+## 1. [RTX 5080 - BLACKWELL ARCHITECTURE](https://images.nvidia.com/aem-dam/Solutions/geforce/blackwell/nvidia-rtx-blackwell-gpu-architecture.pdf)
 #!/bin/bash
 
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
