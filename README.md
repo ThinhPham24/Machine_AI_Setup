@@ -1,6 +1,19 @@
 # Machine_AI_Setup
 
 ## 1. [RTX 5080 - BLACKWELL ARCHITECTURE](https://images.nvidia.com/aem-dam/Solutions/geforce/blackwell/nvidia-rtx-blackwell-gpu-architecture.pdf)
+
+'''
+
+[Cudatoolkit 12.8](https://developer.nvidia.com/cuda-12-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=runfile_local)
+[cudnn 9.11.0 ](https://developer.nvidia.com/cudnn-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local)
+
+
+'''
+
+
+
+
+
 #!/bin/bash
 
 pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
