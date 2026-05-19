@@ -140,6 +140,7 @@ sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/
 sudo apt update && sudo apt upgrade -y
 
  # installing CUDA
+sudo sh cuda_12.8.0_570.86.10_linux.run
 sudo apt install cuda-12-8 -y
 
 # setup your paths
