@@ -67,19 +67,40 @@ Run the following command to verify that PyTorch can see the RTX 5080 and that C
 ```bash
 python -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'Device: {torch.cuda.get_device_name(0)}')"
 ```
-# Machine AI Setup: RTX 5090  32G(Blackwell)
+# Machine AI Setup: RTX 5090 32GB (Blackwell)
 
-#!/bin/bash
+![Platform](https://img.shields.io/badge/OS-Ubuntu_24.04-orange)
+![CUDA](https://img.shields.io/badge/CUDA-12.8-green)
+![cuDNN](https://img.shields.io/badge/cuDNN-9-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-CUDA_12.8-red)
+![GPU](https://img.shields.io/badge/GPU-RTX_5090_32GB-76b900)
 
-### steps ####
-# verify the system has a cuda-capable gpu
-# download and install the nvidia cuda toolkit and cudnn
-# setup environmental variables
-# verify the installation
-###
+This document provides the environment setup and installation steps for deep learning on the **NVIDIA GeForce RTX 5090 32GB**, based on the **Blackwell architecture**.
 
-### to verify your gpu is cuda enable check
+> **Note:** RTX 50-series GPUs require recent NVIDIA drivers and CUDA versions. For RTX 5090, CUDA 12.8 and NVIDIA driver 570 or newer are recommended.
+
+---
+
+## 1. System Information
+
+| Component | Recommended Version |
+| :--- | :--- |
+| GPU | NVIDIA GeForce RTX 5090 32GB |
+| Architecture | Blackwell |
+| OS | Ubuntu 24.04 LTS |
+| NVIDIA Driver | 570 or newer |
+| CUDA Toolkit | 12.8 |
+| cuDNN | cuDNN 9 for CUDA 12 |
+| Python | 3.10 or newer |
+| PyTorch | CUDA 12.8 build |
+
+---
+
+## 2. Verify GPU Detection
+
+```bash
 lspci | grep -i nvidia
+
 
 ### If you have previous installation remove it first. 
 sudo apt purge nvidia* -y
