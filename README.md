@@ -67,5 +67,79 @@ Run the following command to verify that PyTorch can see the RTX 5080 and that C
 ```bash
 python -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'Device: {torch.cuda.get_device_name(0)}')"
 ```
+# Machine AI Setup: RTX 5090  32G(Blackwell)
 
+#!/bin/bash
 
+### steps ####
+# verify the system has a cuda-capable gpu
+# download and install the nvidia cuda toolkit and cudnn
+# setup environmental variables
+# verify the installation
+###
+
+### to verify your gpu is cuda enable check
+lspci | grep -i nvidia
+
+### If you have previous installation remove it first. 
+sudo apt purge nvidia* -y
+sudo apt remove nvidia-* -y
+sudo rm /etc/apt/sources.list.d/cuda*
+sudo apt autoremove -y && sudo apt autoclean -y
+sudo rm -rf /usr/local/cuda*
+
+# system update
+sudo apt update && sudo apt upgrade -y
+
+# install other import packages
+sudo apt install g++ freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libglu1-mesa libglu1-mesa-dev
+
+# first get the PPA repository driver
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+
+# find recommended driver versions for you
+ubuntu-drivers devices
+
+# install nvidia driver with dependencies
+sudo apt install libnvidia-common-570 libnvidia-gl-570 nvidia-driver-570 -y
+
+# reboot
+sudo reboot now
+
+# verify that the following command works
+nvidia-smi
+
+sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
+sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/3bf863cc.pub
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/ /"
+
+# Update and upgrade
+sudo apt update && sudo apt upgrade -y
+
+ # installing CUDA
+sudo apt install cuda-12-8 -y
+
+# setup your paths
+echo 'export PATH=/usr/local/cuda-12.8/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+sudo ldconfig
+
+# install cuDNN
+sudo apt install cudnn9-cuda-12 -y 
+
+# Finally, to verify the installation, check
+nvidia-smi
+nvcc -V
+
+# [Optional] install docker nvidia container support
+sudo apt install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
+# [Optional] install Pytorch and Pytorch3D
+pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+
+pip install -U fvcore iopath
+pip install "git+https://github.com/facebookresearch/pytorch3d.git"
